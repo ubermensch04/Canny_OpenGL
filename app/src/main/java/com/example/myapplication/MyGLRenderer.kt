@@ -70,9 +70,13 @@ class MyGLRenderer : GLSurfaceView.Renderer {
     }
 
     private var surfaceReadyCallback: SurfaceReadyCallback? = null
+    private var glSurfaceView: GLSurfaceView? = null
 
     fun setSurfaceReadyCallback(callback: SurfaceReadyCallback) {
         this.surfaceReadyCallback = callback
+    }
+    fun setGLSurfaceView(view: GLSurfaceView) {
+        glSurfaceView = view
     }
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
@@ -102,21 +106,22 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
     override fun onDrawFrame(gl: GL10?) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
-        synchronized(this){
+        synchronized(this) {
             frameData?.let {
                 try {
-                    Log.d("GLRenderer", "Drawing frame with data size: ${it.size}, dimensions: $frameWidth x $frameHeight")
+                    Log.d("GLRenderer", "Drawing frame with dimensions: $frameWidth x $frameHeight")
 
-                    // Update the texture with the processed frame data
-                    GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId)
-
+                    // Create bitmap from edge detection data
                     val bitmap = createBitmap(it, frameWidth, frameHeight)
+
+                    // Bind and update texture
+                    GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId)
                     GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
 
-                    // Draw the texture to the screen
+                    // Draw the texture
                     drawTexture()
 
-                    // Clean up bitmap resources
+                    // Clean up
                     bitmap.recycle()
 
                 } catch (e: Exception) {
@@ -268,14 +273,27 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
         buffer.rewind()
         bitmap.copyPixelsFromBuffer(buffer)
-        return bitmap
+
+        // Create a rotated bitmap
+        val matrix = android.graphics.Matrix()
+        matrix.postRotate(90f)
+        val rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+
+        // Clean up the original bitmap
+        bitmap.recycle()
+
+        return rotatedBitmap
     }
 
     fun updateFrame(data: ByteArray, width: Int, height: Int) {
         synchronized(this) {
-            this.frameData = data.copyOf() // Create a copy to avoid modification during rendering
+            this.frameData = data.copyOf()
             this.frameWidth = width
             this.frameHeight = height
+            // Request render on the UI thread
+            glSurfaceView?.queueEvent {
+                glSurfaceView?.requestRender()
+            }
         }
     }
 

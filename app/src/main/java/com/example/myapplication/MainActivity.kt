@@ -20,11 +20,16 @@ import android.opengl.GLSurfaceView
 import android.view.View
 
 class MainActivity : ComponentActivity() {
-
+    // Flag to toggle between raw feed and edge detection view
+    private var showingRawFeed = false
+    private var frameCount = 0
+    private var lastFpsTimestamp = System.currentTimeMillis()
+    private val fpsUpdateInterval = 1000
     private lateinit var viewBinding: ActivityMainBinding
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var renderer: MyGLRenderer
     external fun preprocessFrame(data: ByteArray, width: Int, height: Int): ByteArray
+
 
     private fun setupGLSurfaceView() {
         // Set OpenGL ES version
@@ -32,6 +37,7 @@ class MainActivity : ComponentActivity() {
 
         // Create and set the renderer
         renderer = MyGLRenderer()
+        renderer.setGLSurfaceView(viewBinding.glSurfaceView)
         renderer.setSurfaceReadyCallback(object : MyGLRenderer.SurfaceReadyCallback {
             override fun onSurfaceReady() {
                 // Start camera only after GL surface is ready
@@ -57,11 +63,39 @@ class MainActivity : ComponentActivity() {
         // Setup GLSurfaceView
         setupGLSurfaceView()
 
+        viewBinding.toggleButton.setOnClickListener {
+            toggleView()
+        }
         // Don't start camera yet - wait for surface to be ready
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
+    private fun rebindCamera() {
+        if (allPermissionsGranted()) {
+            startCamera()
+        }
+    }
+    private fun toggleView() {
+        showingRawFeed = !showingRawFeed
+
+        if (showingRawFeed) {
+            // Show raw camera feed
+            viewBinding.viewFinder.visibility = View.VISIBLE
+            viewBinding.glSurfaceView.visibility = View.GONE
+        } else {
+            // Show edge detection view
+            viewBinding.viewFinder.visibility = View.GONE
+            viewBinding.glSurfaceView.visibility = View.VISIBLE
+        }
+
+        // Reset FPS counter when switching views
+        frameCount = 0
+        lastFpsTimestamp = System.currentTimeMillis()
+        viewBinding.fpsText.text = "FPS: 0"
+        rebindCamera()
+    }
 
     private fun startCamera() {
+
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
@@ -70,12 +104,15 @@ class MainActivity : ComponentActivity() {
             // Set up the preview use case
             val preview = Preview.Builder().build()
 
+            preview.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
+
             // Set up the image analyzer
             val imageAnalyzer = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
                     it.setAnalyzer(cameraExecutor) { image ->
+                        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_DISPLAY)
                         // Process the image with your native code
                         val planes = image.planes
                         val yBuffer = planes[0].buffer
@@ -98,6 +135,9 @@ class MainActivity : ComponentActivity() {
                         // Update the GL renderer with the edge detection result
                         renderer.updateFrame(result, image.width, image.height)
 
+                        // Update the FPS counter
+                        updateFps()
+
                         image.close()
                     }
                 }
@@ -109,17 +149,24 @@ class MainActivity : ComponentActivity() {
                 // Unbind any bound use cases
                 cameraProvider.unbindAll()
 
-                // IMPORTANT: Set view visibility BEFORE binding camera
-                viewBinding.viewFinder.visibility = View.GONE
-                viewBinding.glSurfaceView.visibility = View.VISIBLE
+                // Set initial visibility - modified to use the current toggle state
+                viewBinding.viewFinder.visibility = if (showingRawFeed) View.VISIBLE else View.GONE
+                viewBinding.glSurfaceView.visibility = if (showingRawFeed) View.GONE else View.VISIBLE
 
                 // Bind use cases to camera
-                cameraProvider.bindToLifecycle(
-                    this, cameraSelector, imageAnalyzer)
+                if (showingRawFeed) {
+                    cameraProvider.bindToLifecycle(
+                        this, cameraSelector, preview, imageAnalyzer)
+                } else {
+                    cameraProvider.bindToLifecycle(
+                        this, cameraSelector, imageAnalyzer)
+                }
 
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
+            val camera = cameraProvider.bindToLifecycle(
+                this, cameraSelector, imageAnalyzer)
         }, ContextCompat.getMainExecutor(this))
     }
 
@@ -157,6 +204,20 @@ class MainActivity : ComponentActivity() {
             System.loadLibrary("myapplication")
         }
 
+    }
+    private fun updateFps() {
+        frameCount++
+        val now = System.currentTimeMillis()
+        val elapsedMs = now - lastFpsTimestamp
+
+        if (elapsedMs >= fpsUpdateInterval) {
+            val fps = frameCount * 1000 / elapsedMs
+            runOnUiThread {
+                viewBinding.fpsText.text = "FPS: $fps"
+            }
+            frameCount = 0
+            lastFpsTimestamp = now
+        }
     }
 
 }
