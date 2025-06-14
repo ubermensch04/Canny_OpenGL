@@ -1,7 +1,9 @@
 package com.example.myapplication
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -21,18 +23,32 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var viewBinding: ActivityMainBinding
     private lateinit var cameraExecutor: ExecutorService
-private fun setupGLSurfaceView() {
-    // Set OpenGL ES version
-    viewBinding.glSurfaceView.setEGLContextClientVersion(2)
+    private lateinit var renderer: MyGLRenderer
+    external fun preprocessFrame(data: ByteArray, width: Int, height: Int): ByteArray
 
-    // Create and set the renderer
-    val renderer = MyGLRenderer()
-    viewBinding.glSurfaceView.setRenderer(renderer)
+    private fun setupGLSurfaceView() {
+        // Set OpenGL ES version
+        viewBinding.glSurfaceView.setEGLContextClientVersion(2)
 
+        // Create and set the renderer
+        renderer = MyGLRenderer()
+        renderer.setSurfaceReadyCallback(object : MyGLRenderer.SurfaceReadyCallback {
+            override fun onSurfaceReady() {
+                // Start camera only after GL surface is ready
+                runOnUiThread {
+                    if (allPermissionsGranted()) {
+                        startCamera()
+                    } else {
+                        requestPermissions()
+                    }
+                }
+            }
+        })
+        viewBinding.glSurfaceView.setRenderer(renderer)
 
-    // Only render when there's a change (more efficient)
-    viewBinding.glSurfaceView.renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
-}
+        // Only render when there's a change
+        viewBinding.glSurfaceView.renderMode = GLSurfaceView.RENDERMODE_WHEN_DIRTY
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,13 +57,7 @@ private fun setupGLSurfaceView() {
         // Setup GLSurfaceView
         setupGLSurfaceView()
 
-        // Request camera permissions
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            requestPermissions()
-        }
-
+        // Don't start camera yet - wait for surface to be ready
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
@@ -55,22 +65,40 @@ private fun setupGLSurfaceView() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
-            // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // Preview use case
+            // Set up the preview use case
             val preview = Preview.Builder().build()
 
-            // Image analyzer
+            // Set up the image analyzer
             val imageAnalyzer = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build()
                 .also {
-                    it.setAnalyzer(cameraExecutor) { imageProxy ->
-                        // Process the image here
-                        // ...
+                    it.setAnalyzer(cameraExecutor) { image ->
+                        // Process the image with your native code
+                        val planes = image.planes
+                        val yBuffer = planes[0].buffer
+                        val uBuffer = planes[1].buffer
+                        val vBuffer = planes[2].buffer
 
-                        // Don't forget to close the image when done
-                        imageProxy.close()
+                        val ySize = yBuffer.remaining()
+                        val uSize = uBuffer.remaining()
+                        val vSize = vBuffer.remaining()
+
+                        val nv21 = ByteArray(ySize + uSize + vSize)
+
+                        yBuffer.get(nv21, 0, ySize)
+                        vBuffer.get(nv21, ySize, vSize)
+                        uBuffer.get(nv21, ySize + vSize, uSize)
+
+                        // Process the frame
+                        val result = preprocessFrame(nv21, image.width, image.height)
+
+                        // Update the GL renderer with the edge detection result
+                        renderer.updateFrame(result, image.width, image.height)
+
+                        image.close()
                     }
                 }
 
@@ -78,21 +106,19 @@ private fun setupGLSurfaceView() {
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
-                // Unbind use cases before rebinding
+                // Unbind any bound use cases
                 cameraProvider.unbindAll()
 
-                // Bind use cases to camera - this will connect the preview use case to your PreviewView
+                // IMPORTANT: Set view visibility BEFORE binding camera
+                viewBinding.viewFinder.visibility = View.GONE
+                viewBinding.glSurfaceView.visibility = View.VISIBLE
+
+                // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageAnalyzer)
+                    this, cameraSelector, imageAnalyzer)
 
-                // Set the surface provider for the preview
-                preview.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
-
-                // Make PreviewView visible to see the camera feed
-                viewBinding.viewFinder.visibility = View.VISIBLE
-
-            } catch(exc: Exception) {
-                Log.e("CameraX", "Use case binding failed", exc)
+            } catch (exc: Exception) {
+                Log.e(TAG, "Use case binding failed", exc)
             }
         }, ContextCompat.getMainExecutor(this))
     }
@@ -126,5 +152,11 @@ private fun setupGLSurfaceView() {
 
     companion object {
         private val REQUIRED_PERMISSIONS = mutableListOf(Manifest.permission.CAMERA).toTypedArray()
+
+        init {
+            System.loadLibrary("myapplication")
+        }
+
     }
+
 }
