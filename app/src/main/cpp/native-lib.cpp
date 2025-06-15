@@ -16,11 +16,11 @@ Java_com_example_myapplication_MainActivity_preprocessFrame(JNIEnv *env, jobject
 
     // Apply Gaussian blur to reduce noise before edge detection
     Mat blurredImage;
-    GaussianBlur(grayImage, blurredImage, Size(5, 5), 1.0);
+    GaussianBlur(grayImage, blurredImage, Size(5, 5), 1.5);
 
     // Apply Canny edge detection
     Mat edges;
-    Canny(blurredImage, edges, 50, 120);
+    Canny(blurredImage, edges, 50, 100);
 
     // Convert the result back to a byte array
     jbyteArray result = env->NewByteArray(edges.total());
