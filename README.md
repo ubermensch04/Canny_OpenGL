@@ -32,5 +32,5 @@
    - Optimal Canny threshold parameters for clear edge visualization
 
 ## Screenshots of Working App
-![Image](https://github.com/user-attachments/assets/2d1a1e2b-2c9c-4326-a58e-4c985b6324b2)
+
 
