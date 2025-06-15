@@ -18,6 +18,13 @@ class MyGLRenderer : GLSurfaceView.Renderer {
     private var texCoordHandle = 0
     private var textureUniformHandle = 0
 
+    enum class ShaderEffect {
+        NORMAL,
+        GRAYSCALE,
+        INVERT
+    }
+    var currentEffect = ShaderEffect.NORMAL
+
     // Frame data
     @Volatile
     var frameData: ByteArray? = null
@@ -55,14 +62,38 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         }
     """
 
-    private val fragmentShaderCode = """
+    private val fragmentShaderCode = mapOf(
+        ShaderEffect.NORMAL to """
         precision mediump float;
         uniform sampler2D texSampler;
         varying vec2 texCoord;
         void main() {
             gl_FragColor = texture2D(texSampler, texCoord);
         }
+    """,
+        ShaderEffect.GRAYSCALE to """
+        precision mediump float;
+        uniform sampler2D texSampler;
+        varying vec2 texCoord;
+        void main() {
+            vec4 color = texture2D(texSampler, texCoord);
+            // Since your input is already grayscale from edge detection,
+            // we just need to ensure proper grayscale conversion
+            float gray = (color.r + color.g + color.b) / 3.0;
+            gl_FragColor = vec4(gray, gray, gray, 1.0);
+        }
+    """,
+        ShaderEffect.INVERT to """
+        precision mediump float;
+        uniform sampler2D texSampler;
+        varying vec2 texCoord;
+        void main() {
+            vec4 color = texture2D(texSampler, texCoord);
+            gl_FragColor = vec4(1.0 - color.r, 1.0 - color.g, 1.0 - color.b, 1.0);
+        }
     """
+    )
+    private var shaderPrograms = mutableMapOf<ShaderEffect, Int>()
 
     // Callback interface for surface creation
     interface SurfaceReadyCallback {
@@ -88,13 +119,22 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         // Create texture
         textureId = createTexture()
 
-        // Create shader program
-        programHandle = createProgram()
+        // Create all shader programs upfront
+        for (effect in ShaderEffect.entries) {
+            val program = createProgram(effect)
+            Log.d("GLRenderer", "Created program for $effect: $program")
+            shaderPrograms[effect] = program
+        }
+
+        // Set the current effect program
+        programHandle = shaderPrograms[currentEffect] ?: 0
+        Log.d("GLRenderer", "Initial program handle: $programHandle for $currentEffect")
 
         // Get handle to shader attributes/uniforms
         positionHandle = GLES20.glGetAttribLocation(programHandle, "vPosition")
         texCoordHandle = GLES20.glGetAttribLocation(programHandle, "vTexCoordinate")
         textureUniformHandle = GLES20.glGetUniformLocation(programHandle, "texSampler")
+        Log.d("GLRenderer", "Initial handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
 
         // Notify that surface is ready
         surfaceReadyCallback?.onSurfaceReady()
@@ -192,13 +232,13 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         return shaderId
     }
 
-    private fun createProgram(): Int {
+    private fun createProgram(effect: ShaderEffect): Int {
         val vertexShader = createShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode)
         if (vertexShader == 0) {
             return 0
         }
 
-        val fragmentShader = createShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode)
+        val fragmentShader = createShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode[effect] ?: return 0)
         if (fragmentShader == 0) {
             return 0
         }
@@ -225,10 +265,43 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
         return programHandle
     }
+    // Method to switch effects
+    fun setEffect(effect: ShaderEffect) {
+        if (currentEffect != effect) {
+            Log.d("GLRenderer", "Switching effect from $currentEffect to $effect")
+            currentEffect = effect
+
+            // Make sure we have a valid program for this effect
+            if (!shaderPrograms.containsKey(effect)) {
+                // If we don't have the shader program compiled yet, create it
+                shaderPrograms[effect] = createProgram(effect)
+            }
+
+            programHandle = shaderPrograms[effect] ?: programHandle
+
+            // Update handles for the new program
+            positionHandle = GLES20.glGetAttribLocation(programHandle, "vPosition")
+            texCoordHandle = GLES20.glGetAttribLocation(programHandle, "vTexCoordinate")
+            textureUniformHandle = GLES20.glGetUniformLocation(programHandle, "texSampler")
+
+            Log.d("GLRenderer", "New handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
+
+            // Force immediate redraw with the new shader
+            frameData?.let {
+                // Trigger a redraw with existing frame data
+                glSurfaceView?.requestRender()
+            }
+        }
+    }
 
     private fun drawTexture() {
-        // Use the shader program
+        // Use the current shader program
         GLES20.glUseProgram(programHandle)
+
+        if (positionHandle < 0 || texCoordHandle < 0 || textureUniformHandle < 0) {
+            Log.e("GLRenderer", "Invalid shader handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
+            return
+        }
 
         // Set the vertex position data
         GLES20.glVertexAttribPointer(

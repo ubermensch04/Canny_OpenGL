@@ -30,6 +30,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var renderer: MyGLRenderer
     external fun preprocessFrame(data: ByteArray, width: Int, height: Int): ByteArray
 
+    private var currentEffect = MyGLRenderer.ShaderEffect.NORMAL
 
     private fun setupGLSurfaceView() {
         // Set OpenGL ES version
@@ -66,9 +67,32 @@ class MainActivity : ComponentActivity() {
         viewBinding.toggleButton.setOnClickListener {
             toggleView()
         }
+
+        // Effect button to cycle through shader effects
+        viewBinding.effectButton.setOnClickListener {
+            cycleEffect()
+        }
+
         // Don't start camera yet - wait for surface to be ready
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
+    private fun cycleEffect() {
+        val oldEffect = currentEffect
+        currentEffect = when (currentEffect) {
+            MyGLRenderer.ShaderEffect.NORMAL -> MyGLRenderer.ShaderEffect.GRAYSCALE
+            MyGLRenderer.ShaderEffect.GRAYSCALE -> MyGLRenderer.ShaderEffect.INVERT
+            MyGLRenderer.ShaderEffect.INVERT -> MyGLRenderer.ShaderEffect.NORMAL
+        }
+
+        Log.d("MainActivity", "Switching effect from $oldEffect to $currentEffect")
+
+        // Update button text to show current effect
+        viewBinding.effectButton.text = "Effect: ${currentEffect.name}"
+
+        // Apply the effect
+        renderer.setEffect(currentEffect)
+    }
+
     private fun rebindCamera() {
         if (allPermissionsGranted()) {
             startCamera()

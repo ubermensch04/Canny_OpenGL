@@ -14,9 +14,13 @@ Java_com_example_myapplication_MainActivity_preprocessFrame(JNIEnv *env, jobject
     Mat grayImage;
     cvtColor(yuvImage, grayImage, COLOR_YUV2GRAY_NV21);
 
+    // Apply Gaussian blur to reduce noise before edge detection
+    Mat blurredImage;
+    GaussianBlur(grayImage, blurredImage, Size(5, 5), 1.0);
+
     // Apply Canny edge detection
     Mat edges;
-    Canny(grayImage, edges, 100, 200);
+    Canny(blurredImage, edges, 40, 120);
 
     // Convert the result back to a byte array
     jbyteArray result = env->NewByteArray(edges.total());
