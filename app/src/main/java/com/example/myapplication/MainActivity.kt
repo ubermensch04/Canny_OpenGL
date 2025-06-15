@@ -3,7 +3,6 @@ package com.example.myapplication
 import android.Manifest
 import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -18,10 +17,13 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.opengl.GLSurfaceView
 import android.view.View
+import gl.MyGLRenderer
 
 class MainActivity : ComponentActivity() {
+
     // Flag to toggle between raw feed and edge detection view
     private var showingRawFeed = false
+
     private var frameCount = 0
     private var lastFpsTimestamp = System.currentTimeMillis()
     private val fpsUpdateInterval = 1000
@@ -79,8 +81,7 @@ class MainActivity : ComponentActivity() {
     private fun cycleEffect() {
         val oldEffect = currentEffect
         currentEffect = when (currentEffect) {
-            MyGLRenderer.ShaderEffect.NORMAL -> MyGLRenderer.ShaderEffect.GRAYSCALE
-            MyGLRenderer.ShaderEffect.GRAYSCALE -> MyGLRenderer.ShaderEffect.INVERT
+            MyGLRenderer.ShaderEffect.NORMAL -> MyGLRenderer.ShaderEffect.INVERT
             MyGLRenderer.ShaderEffect.INVERT -> MyGLRenderer.ShaderEffect.NORMAL
         }
 
@@ -125,7 +126,7 @@ class MainActivity : ComponentActivity() {
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // Set up the preview use case
+
             val preview = Preview.Builder().build()
 
             preview.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
@@ -137,7 +138,7 @@ class MainActivity : ComponentActivity() {
                 .also {
                     it.setAnalyzer(cameraExecutor) { image ->
                         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_DISPLAY)
-                        // Process the image with your native code
+
                         val planes = image.planes
                         val yBuffer = planes[0].buffer
                         val uBuffer = planes[1].buffer
@@ -189,8 +190,8 @@ class MainActivity : ComponentActivity() {
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
-            val camera = cameraProvider.bindToLifecycle(
-                this, cameraSelector, imageAnalyzer)
+//            val camera = cameraProvider.bindToLifecycle(
+//                this, cameraSelector, imageAnalyzer)
         }, ContextCompat.getMainExecutor(this))
     }
 

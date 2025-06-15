@@ -4,7 +4,6 @@
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- ADD THE android:name ATTRIBUTE HERE -->
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -17,7 +16,6 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
-        <!-- This part is correct. It points to your user-facing screen. -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

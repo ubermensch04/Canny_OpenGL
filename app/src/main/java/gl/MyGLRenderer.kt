@@ -1,4 +1,4 @@
-package com.example.myapplication
+package gl
 
 import android.graphics.Bitmap
 import android.opengl.GLES20
@@ -20,7 +20,6 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
     enum class ShaderEffect {
         NORMAL,
-        GRAYSCALE,
         INVERT
     }
     var currentEffect = ShaderEffect.NORMAL
@@ -69,18 +68,6 @@ class MyGLRenderer : GLSurfaceView.Renderer {
         varying vec2 texCoord;
         void main() {
             gl_FragColor = texture2D(texSampler, texCoord);
-        }
-    """,
-        ShaderEffect.GRAYSCALE to """
-        precision mediump float;
-        uniform sampler2D texSampler;
-        varying vec2 texCoord;
-        void main() {
-            vec4 color = texture2D(texSampler, texCoord);
-            // Since your input is already grayscale from edge detection,
-            // we just need to ensure proper grayscale conversion
-            float gray = (color.r + color.g + color.b) / 3.0;
-            gl_FragColor = vec4(gray, gray, gray, 1.0);
         }
     """,
         ShaderEffect.INVERT to """
@@ -146,6 +133,7 @@ class MyGLRenderer : GLSurfaceView.Renderer {
 
     override fun onDrawFrame(gl: GL10?) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
+        Log.d("GLRenderer", "Drawing frame with effect: $currentEffect, program: $programHandle")
         synchronized(this) {
             frameData?.let {
                 try {
@@ -267,28 +255,39 @@ class MyGLRenderer : GLSurfaceView.Renderer {
     }
     // Method to switch effects
     fun setEffect(effect: ShaderEffect) {
-        if (currentEffect != effect) {
-            Log.d("GLRenderer", "Switching effect from $currentEffect to $effect")
+        if (effect != currentEffect) {
+            Log.d("GLRenderer", "Scheduling effect change from $currentEffect to $effect")
+
+            // Store the effect change request
             currentEffect = effect
 
-            // Make sure we have a valid program for this effect
-            if (!shaderPrograms.containsKey(effect)) {
-                // If we don't have the shader program compiled yet, create it
-                shaderPrograms[effect] = createProgram(effect)
-            }
+            // Queue the actual OpenGL commands to run on the GL thread
+            glSurfaceView?.queueEvent {
+                // Make sure we have a valid program for this effect
+                if (!shaderPrograms.containsKey(effect)) {
+                    // Create the shader program on the GL thread
+                    val newProgram = createProgram(effect)
+                    Log.d("GLRenderer", "Created new program for $effect: $newProgram")
+                    shaderPrograms[effect] = newProgram
+                }
 
-            programHandle = shaderPrograms[effect] ?: programHandle
+                // Switch to the new program (now properly on GL thread)
+                programHandle = shaderPrograms[effect] ?: 0
+                if (programHandle == 0) {
+                    Log.e("GLRenderer", "Failed to obtain valid program handle for effect: $effect")
+                    return@queueEvent
+                }
 
-            // Update handles for the new program
-            positionHandle = GLES20.glGetAttribLocation(programHandle, "vPosition")
-            texCoordHandle = GLES20.glGetAttribLocation(programHandle, "vTexCoordinate")
-            textureUniformHandle = GLES20.glGetUniformLocation(programHandle, "texSampler")
+                // Update handles for the new program
+                GLES20.glUseProgram(programHandle)
+                positionHandle = GLES20.glGetAttribLocation(programHandle, "vPosition")
+                texCoordHandle = GLES20.glGetAttribLocation(programHandle, "vTexCoordinate")
+                textureUniformHandle = GLES20.glGetUniformLocation(programHandle, "texSampler")
 
-            Log.d("GLRenderer", "New handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
+                Log.d("GLRenderer", "Updated shader program on GL thread: $programHandle")
+                Log.d("GLRenderer", "New handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
 
-            // Force immediate redraw with the new shader
-            frameData?.let {
-                // Trigger a redraw with existing frame data
+                // Request a render with the new shader program
                 glSurfaceView?.requestRender()
             }
         }
@@ -297,6 +296,7 @@ class MyGLRenderer : GLSurfaceView.Renderer {
     private fun drawTexture() {
         // Use the current shader program
         GLES20.glUseProgram(programHandle)
+        logGlErrors("After glUseProgram")
 
         if (positionHandle < 0 || texCoordHandle < 0 || textureUniformHandle < 0) {
             Log.e("GLRenderer", "Invalid shader handles: pos=$positionHandle, tex=$texCoordHandle, uniform=$textureUniformHandle")
@@ -331,21 +331,35 @@ class MyGLRenderer : GLSurfaceView.Renderer {
     }
 
     private fun createBitmap(data: ByteArray, width: Int, height: Int): Bitmap {
-
+        // Create a bitmap with the exact dimensions of the edge data
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
-        // Convert binary edge detection results to ARGB
-        val buffer = ByteBuffer.allocate(width * height * 4)
-        for (i in data.indices) {
-            val value = data[i].toInt() and 0xFF
-            buffer.put(value.toByte())      // R
-            buffer.put(value.toByte())      // G
-            buffer.put(value.toByte())      // B
-            buffer.put(0xFF.toByte())       // A (fully opaque)
+        // Ensure the data size matches the expected size
+        if (data.size != width * height) {
+            Log.e("GLRenderer", "Data size mismatch: expected ${width * height}, got ${data.size}")
+            // Create a black bitmap if data doesn't match
+            val buffer = ByteBuffer.allocate(width * height * 4)
+            for (i in 0 until width * height) {
+                buffer.put(0.toByte())      // R
+                buffer.put(0.toByte())      // G
+                buffer.put(0.toByte())      // B
+                buffer.put(255.toByte())    // A
+            }
+            buffer.rewind()
+            bitmap.copyPixelsFromBuffer(buffer)
+        } else {
+            // Convert binary edge detection results to ARGB
+            val buffer = ByteBuffer.allocate(width * height * 4)
+            for (i in 0 until width * height) {
+                val value = if (i < data.size) data[i].toInt() and 0xFF else 0
+                buffer.put(value.toByte())      // R
+                buffer.put(value.toByte())      // G
+                buffer.put(value.toByte())      // B
+                buffer.put(255.toByte())        // A (fully opaque)
+            }
+            buffer.rewind()
+            bitmap.copyPixelsFromBuffer(buffer)
         }
-
-        buffer.rewind()
-        bitmap.copyPixelsFromBuffer(buffer)
 
         // Create a rotated bitmap
         val matrix = android.graphics.Matrix()
@@ -367,6 +381,13 @@ class MyGLRenderer : GLSurfaceView.Renderer {
             glSurfaceView?.queueEvent {
                 glSurfaceView?.requestRender()
             }
+        }
+    }
+
+    private fun logGlErrors(tag: String) {
+        val error = GLES20.glGetError()
+        if (error != GLES20.GL_NO_ERROR) {
+            Log.e("GLRenderer", "$tag: GL error: 0x${Integer.toHexString(error)}")
         }
     }
 

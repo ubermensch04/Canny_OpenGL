@@ -20,7 +20,7 @@ Java_com_example_myapplication_MainActivity_preprocessFrame(JNIEnv *env, jobject
 
     // Apply Canny edge detection
     Mat edges;
-    Canny(blurredImage, edges, 40, 120);
+    Canny(blurredImage, edges, 50, 120);
 
     // Convert the result back to a byte array
     jbyteArray result = env->NewByteArray(edges.total());
