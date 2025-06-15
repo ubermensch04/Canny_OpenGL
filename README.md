@@ -81,3 +81,4 @@ The application uses JNI (Java Native Interface) to bridge between the Kotlin/Ja
 3. **Library Loading**: `System.loadLibrary("myapplication")` loads the compiled C++ library
 
 ### Frame Flow (Data Flow)
+![Image](https://github.com/user-attachments/assets/6cb2ab0d-8ae5-4c9f-8050-d432f554df9d)
