@@ -70,3 +70,14 @@ Download and Install NDK (Side by side) and CMake from SDK tools tab in Android 
 3. Wait for Gradle to sync and build
 4. Run the app on a physical device (camera required)
 
+## Architecture
+
+### JNI Integration
+
+The application uses JNI (Java Native Interface) to bridge between the Kotlin/Java layer and C++ code:
+
+1. **Native Method Declaration**: `external fun preprocessFrame(data: ByteArray, width: Int, height: Int): ByteArray` in MainActivity
+2. **Native Implementation**: C++ function in `native-lib.cpp` using the JNI naming convention
+3. **Library Loading**: `System.loadLibrary("myapplication")` loads the compiled C++ library
+
+### Frame Flow (Data Flow)
