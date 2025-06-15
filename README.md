@@ -30,3 +30,5 @@
 4. **🔍 OpenCV Processing**
    - Gaussian blur applied before edge detection to reduce noise
    - Optimal Canny threshold parameters for clear edge visualization
+
+![Working App Demo](./content/vid1.gif)
