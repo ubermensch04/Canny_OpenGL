@@ -54,7 +54,7 @@
  *
  *  Rendering list needs to be generated as follows:
  *
- *  @include modules/gapi/samples/draw_example.cpp
+ *  @include modules/gapi/samples/draw_example.jni
  *
  *  @defgroup gapi_draw_prims Drawing primitives
  *  @defgroup gapi_draw_api Drawing operations and functions

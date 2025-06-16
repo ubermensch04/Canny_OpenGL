@@ -15,7 +15,7 @@ import org.opencv.imgproc.IntelligentScissorsMB;
  * which can be used for image segmentation.
  *
  * Usage example:
- * SNIPPET: snippets/imgproc_segmentation.cpp usage_example_intelligent_scissors
+ * SNIPPET: snippets/imgproc_segmentation.jni usage_example_intelligent_scissors
  *
  * Reference: &lt;a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.138.3811&amp;rep=rep1&amp;type=pdf"&gt;"Intelligent Scissors for Image Composition"&lt;/a&gt;
  * algorithm designed by Eric N. Mortensen and William A. Barrett, Brigham Young University

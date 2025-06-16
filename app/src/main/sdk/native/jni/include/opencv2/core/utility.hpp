@@ -315,10 +315,10 @@ CV_EXPORTS_W double getTickFrequency();
 
 The class computes passing time by counting the number of ticks per second. That is, the following code computes the
 execution time in seconds:
-@snippet snippets/core_various.cpp TickMeter_total
+@snippet snippets/core_various.jni TickMeter_total
 
 It is also possible to compute the average time over multiple runs:
-@snippet snippets/core_various.cpp TickMeter_average
+@snippet snippets/core_various.jni TickMeter_average
 
 @sa getTickCount, getTickFrequency
 */

@@ -49,7 +49,7 @@ namespace core {
                 // OpenCV: When the input arrays in add/subtract/multiply/divide
                 // functions have different depths, the output array depth must be
                 // explicitly specified!
-                // See artim_op() @ arithm.cpp
+                // See artim_op() @ arithm.jni
                 GAPI_Assert(a.chan == b.chan);
                 GAPI_Assert(a.depth == b.depth);
                 return a;
@@ -332,7 +332,7 @@ namespace core {
                 // OpenCV: When the input arrays in add/subtract/multiply/divide
                 // functions have different depths, the output array depth must be
                 // explicitly specified!
-                // See artim_op() @ arithm.cpp
+                // See artim_op() @ arithm.jni
                 GAPI_Assert(a.chan == b.chan);
                 GAPI_Assert(a.depth == b.depth);
                 return a;

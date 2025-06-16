@@ -68,7 +68,7 @@ This module includes photo processing algorithms
 
     Useful links:
 
-    https://www.learnopencv.com/seamless-cloning-using-opencv-python-cpp
+    https://www.learnopencv.com/seamless-cloning-using-opencv-python-jni
 
     @defgroup photo_render Non-Photorealistic Rendering
 
@@ -112,7 +112,7 @@ objects from still images or video. See <http://en.wikipedia.org/wiki/Inpainting
 
 @note
    -   An example using the inpainting technique can be found at
-        opencv_source_code/samples/cpp/inpaint.cpp
+        opencv_source_code/samples/jni/inpaint.jni
    -   (Python) An example using the inpainting technique can be found at
         opencv_source_code/samples/python/inpaint.py
  */
@@ -760,7 +760,7 @@ enum SeamlessCloneFlags
 };
 
 
-/** @example samples/cpp/tutorial_code/photo/seamless_cloning/cloning_demo.cpp
+/** @example samples/jni/tutorial_code/photo/seamless_cloning/cloning_demo.jni
 An example using seamlessClone function
 */
 /** @brief Performs seamless cloning to blend a region from a source image into a destination image.
@@ -862,7 +862,7 @@ CV_EXPORTS_W void edgePreservingFilter(InputArray src, OutputArray dst, int flag
 CV_EXPORTS_W void detailEnhance(InputArray src, OutputArray dst, float sigma_s = 10,
         float sigma_r = 0.15f);
 
-/** @example samples/cpp/tutorial_code/photo/non_photorealistic_rendering/npr_demo.cpp
+/** @example samples/jni/tutorial_code/photo/non_photorealistic_rendering/npr_demo.jni
 An example using non-photorealistic line drawing functions
 */
 /** @brief Pencil-like non-photorealistic line drawing

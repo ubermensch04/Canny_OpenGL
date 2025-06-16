@@ -2269,10 +2269,10 @@ public class Core {
      * And multi-channel arrays are also supported in these two reduction modes.
      *
      * The following code demonstrates its usage for a single channel matrix.
-     * SNIPPET: snippets/core_reduce.cpp example
+     * SNIPPET: snippets/core_reduce.jni example
      *
      * And the following code demonstrates its usage for a two-channel matrix.
-     * SNIPPET: snippets/core_reduce.cpp example2
+     * SNIPPET: snippets/core_reduce.jni example2
      *
      * @param src input 2D matrix.
      * @param dst output vector. Its size and type is defined by dim and dtype parameters.
@@ -2298,10 +2298,10 @@ public class Core {
      * And multi-channel arrays are also supported in these two reduction modes.
      *
      * The following code demonstrates its usage for a single channel matrix.
-     * SNIPPET: snippets/core_reduce.cpp example
+     * SNIPPET: snippets/core_reduce.jni example
      *
      * And the following code demonstrates its usage for a two-channel matrix.
-     * SNIPPET: snippets/core_reduce.cpp example2
+     * SNIPPET: snippets/core_reduce.jni example2
      *
      * @param src input 2D matrix.
      * @param dst output vector. Its size and type is defined by dim and dtype parameters.
@@ -4503,7 +4503,7 @@ public class Core {
      * <ul>
      *   <li>
      *    An example using the discrete fourier transform can be found at
-     *     opencv_source_code/samples/cpp/dft.cpp
+     *     opencv_source_code/samples/jni/dft.jni
      *   </li>
      *   <li>
      *    (Python) An example using the dft functionality to perform Wiener deconvolution can be found
@@ -4681,7 +4681,7 @@ public class Core {
      * <ul>
      *   <li>
      *    An example using the discrete fourier transform can be found at
-     *     opencv_source_code/samples/cpp/dft.cpp
+     *     opencv_source_code/samples/jni/dft.jni
      *   </li>
      *   <li>
      *    (Python) An example using the dft functionality to perform Wiener deconvolution can be found
@@ -4858,7 +4858,7 @@ public class Core {
      * <ul>
      *   <li>
      *    An example using the discrete fourier transform can be found at
-     *     opencv_source_code/samples/cpp/dft.cpp
+     *     opencv_source_code/samples/jni/dft.jni
      *   </li>
      *   <li>
      *    (Python) An example using the dft functionality to perform Wiener deconvolution can be found

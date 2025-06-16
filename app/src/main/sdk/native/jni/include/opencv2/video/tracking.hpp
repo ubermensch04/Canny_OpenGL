@@ -78,7 +78,7 @@ See the OpenCV sample camshiftdemo.c that tracks colored objects.
  */
 CV_EXPORTS_W RotatedRect CamShift( InputArray probImage, CV_IN_OUT Rect& window,
                                    TermCriteria criteria );
-/** @example samples/cpp/camshiftdemo.cpp
+/** @example samples/jni/camshiftdemo.jni
 An example using the mean-shift tracking algorithm
 */
 
@@ -124,7 +124,7 @@ CV_EXPORTS_W int buildOpticalFlowPyramid( InputArray img, OutputArrayOfArrays py
                                           int derivBorder = BORDER_CONSTANT,
                                           bool tryReuseInputImage = true );
 
-/** @example samples/cpp/lkdemo.cpp
+/** @example samples/jni/lkdemo.jni
 An example using the Lucas-Kanade optical flow algorithm
 */
 
@@ -169,7 +169,7 @@ The function implements a sparse iterative version of the Lucas-Kanade optical f
 @note Some examples:
 
 -   An example using the Lucas-Kanade optical flow algorithm can be found at
-    opencv_source_code/samples/cpp/lkdemo.cpp
+    opencv_source_code/samples/jni/lkdemo.jni
 -   (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
     opencv_source_code/samples/python/lk_track.py
 -   (Python) An example using the Lucas-Kanade tracker for homography matching can be found at
@@ -216,7 +216,7 @@ The function finds an optical flow for each prev pixel using the @cite Farneback
 @note Some examples:
 
 -   An example using the optical flow algorithm described by Gunnar Farneback can be found at
-    opencv_source_code/samples/cpp/fback.cpp
+    opencv_source_code/samples/jni/fback.jni
 -   (Python) An example using the optical flow algorithm described by Gunnar Farneback can be
     found at opencv_source_code/samples/python/opt_flow.py
  */
@@ -278,7 +278,7 @@ findTransformECC
 
 CV_EXPORTS_W double computeECC(InputArray templateImage, InputArray inputImage, InputArray inputMask = noArray());
 
-/** @example samples/cpp/image_alignment.cpp
+/** @example samples/jni/image_alignment.jni
 An example using the image alignment ECC algorithm
 */
 
@@ -327,7 +327,7 @@ displacements/rotations, an initial transformation that roughly aligns the image
 (e.g., a simple euclidean/similarity transform that allows for the images showing the same image
 content approximately). Use inverse warping in the second image to take an image close to the first
 one, i.e. use the flag WARP_INVERSE_MAP with warpAffine or warpPerspective. See also the OpenCV
-sample image_alignment.cpp that demonstrates the use of the function. Note that the function throws
+sample image_alignment.jni that demonstrates the use of the function. Note that the function throws
 an exception if algorithm does not converges.
 
 @sa
@@ -345,7 +345,7 @@ double findTransformECC(InputArray templateImage, InputArray inputImage,
     TermCriteria criteria = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, 50, 0.001),
     InputArray inputMask = noArray());
 
-/** @example samples/cpp/kalman.cpp
+/** @example samples/jni/kalman.jni
 An example using the standard Kalman filter
 */
 

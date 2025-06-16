@@ -43,7 +43,7 @@ protected:
 private:
     int key_;
 
-    friend class cv::details::TlsStorage;  // core/src/system.cpp
+    friend class cv::details::TlsStorage;  // core/src/system.jni
 
 public:
     void cleanup(); //!< Release created TLS data container objects. It is similar to release() call, but it keeps TLS container valid.

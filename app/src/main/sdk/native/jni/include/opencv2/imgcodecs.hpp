@@ -357,7 +357,7 @@ The function imreadmulti loads a specified range from a multi-page image from th
 */
 CV_EXPORTS_W bool imreadmulti(const String& filename, CV_OUT std::vector<Mat>& mats, int start, int count, int flags = IMREAD_ANYCOLOR);
 
-/** @example samples/cpp/tutorial_code/imgcodecs/animations.cpp
+/** @example samples/jni/tutorial_code/imgcodecs/animations.jni
 An example to show usage of cv::imreadanimation and cv::imwriteanimation functions.
 Check @ref tutorial_animations "the corresponding tutorial" for more details
 */
@@ -437,7 +437,7 @@ functions to save the image to XML or YAML format.
 
 The sample below shows how to create a BGRA image, how to set custom compression parameters and save it to a PNG file.
 It also demonstrates how to save multiple images in a TIFF file:
-@include snippets/imgcodecs_imwrite.cpp
+@include snippets/imgcodecs_imwrite.jni
 @param filename Name of the file.
 @param img (Mat or vector of Mat) Image or Images to be saved.
 @param params Format-specific parameters encoded as pairs (paramId_1, paramValue_1, paramId_2, paramValue_2, ... .) see cv::ImwriteFlags

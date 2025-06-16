@@ -542,7 +542,7 @@ struct HammingLUT
 
 /**
  * Hamming distance functor (pop count between two binary vectors, i.e. xor them and count the number of bits set)
- * That code was taken from brief.cpp in OpenCV
+ * That code was taken from brief.jni in OpenCV
  */
 template<class T>
 struct Hamming

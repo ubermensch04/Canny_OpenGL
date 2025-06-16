@@ -1451,11 +1451,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -1580,11 +1580,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -1708,11 +1708,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -1814,7 +1814,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -1878,7 +1878,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -1941,7 +1941,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -2003,7 +2003,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -2064,7 +2064,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -2124,7 +2124,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -2183,7 +2183,7 @@ public class Calib3d {
      * <ul>
      *   <li>
      *       An example of how to use solvePNPRansac for object detection can be found at
-     *         opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+     *         opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
      *   </li>
      *   <li>
      *       The default method used to estimate the camera pose for the Minimal Sample Sets step
@@ -2517,11 +2517,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -2653,11 +2653,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -2788,11 +2788,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -2922,11 +2922,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -3055,11 +3055,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -3187,11 +3187,11 @@ public class Calib3d {
      *     <li>
      *          Numpy array slices won't work as input because solvePnP requires contiguous
      *         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-     *         modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         modules/calib3d/src/solvepnp.jni version 2.4.9)
      *     </li>
      *     <li>
      *          The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+     *         to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
      *         which requires 2-channel information.
      *     </li>
      *     <li>
@@ -5273,7 +5273,7 @@ public class Calib3d {
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
      * @param newImageSize New image resolution after rectification. The same size should be passed to
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * @param validPixROI1 Optional output rectangles inside the rectified images where all the pixels
@@ -5354,7 +5354,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -5409,7 +5409,7 @@ public class Calib3d {
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
      * @param newImageSize New image resolution after rectification. The same size should be passed to
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * @param validPixROI1 Optional output rectangles inside the rectified images where all the pixels
@@ -5489,7 +5489,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -5542,7 +5542,7 @@ public class Calib3d {
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
      * @param newImageSize New image resolution after rectification. The same size should be passed to
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller
@@ -5621,7 +5621,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -5671,7 +5671,7 @@ public class Calib3d {
      * pixels from the original images from the cameras are retained in the rectified images (no source
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller
@@ -5750,7 +5750,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -5799,7 +5799,7 @@ public class Calib3d {
      * pixels from the original images from the cameras are retained in the rectified images (no source
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller
@@ -5878,7 +5878,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -5926,7 +5926,7 @@ public class Calib3d {
      * pixels from the original images from the cameras are retained in the rectified images (no source
      * image pixels are lost). Any intermediate value yields an intermediate result between
      * those two extreme cases.
-     * #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     * #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      * is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
      * preserve details in the original image, especially when there is a big radial distortion.
      * are valid. If alpha=0 , the ROIs cover the whole images. Otherwise, they are likely to be smaller
@@ -6005,7 +6005,7 @@ public class Calib3d {
      * matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
      * initialize the rectification map for each camera.
      *
-     * See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+     * See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
      * the corresponding image regions. This means that the images are well rectified, which is what most
      * stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
      * their interiors are all valid pixels.
@@ -11543,7 +11543,7 @@ public class Calib3d {
      *     horizontal or vertical direction (depending on the orientation of epipolar lines) to maximize the
      *     useful image area.
      *     @param newImageSize New image resolution after rectification. The same size should be passed to
-     *     #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     *     #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      *     is passed (default), it is set to the original imageSize . Setting it to larger value can help you
      *     preserve details in the original image, especially when there is a big radial distortion.
      *     @param balance Sets the new focal length in range between the min focal length and the max focal
@@ -11578,7 +11578,7 @@ public class Calib3d {
      *     horizontal or vertical direction (depending on the orientation of epipolar lines) to maximize the
      *     useful image area.
      *     @param newImageSize New image resolution after rectification. The same size should be passed to
-     *     #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     *     #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      *     is passed (default), it is set to the original imageSize . Setting it to larger value can help you
      *     preserve details in the original image, especially when there is a big radial distortion.
      *     @param balance Sets the new focal length in range between the min focal length and the max focal
@@ -11612,7 +11612,7 @@ public class Calib3d {
      *     horizontal or vertical direction (depending on the orientation of epipolar lines) to maximize the
      *     useful image area.
      *     @param newImageSize New image resolution after rectification. The same size should be passed to
-     *     #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     *     #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      *     is passed (default), it is set to the original imageSize . Setting it to larger value can help you
      *     preserve details in the original image, especially when there is a big radial distortion.
      *     length. Balance is in range of [0, 1].
@@ -11644,7 +11644,7 @@ public class Calib3d {
      *     rectified views. And if the flag is not set, the function may still shift the images in the
      *     horizontal or vertical direction (depending on the orientation of epipolar lines) to maximize the
      *     useful image area.
-     *     #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+     *     #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
      *     is passed (default), it is set to the original imageSize . Setting it to larger value can help you
      *     preserve details in the original image, especially when there is a big radial distortion.
      *     length. Balance is in range of [0, 1].

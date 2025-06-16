@@ -243,7 +243,7 @@ of p and len.
 */
 CV_EXPORTS_W int borderInterpolate(int p, int len, int borderType);
 
-/** @example samples/cpp/tutorial_code/ImgTrans/copyMakeBorder_demo.cpp
+/** @example samples/jni/tutorial_code/ImgTrans/copyMakeBorder_demo.jni
 An example using copyMakeBorder function.
 Check @ref tutorial_copyMakeBorder "the corresponding tutorial" for more details
 */
@@ -530,7 +530,7 @@ The format of half precision floating point is defined in IEEE 754-2008.
 */
 CV_EXPORTS_W void convertFp16(InputArray src, OutputArray dst);
 
-/** @example samples/cpp/tutorial_code/core/how_to_scan_images/how_to_scan_images.cpp
+/** @example samples/jni/tutorial_code/core/how_to_scan_images/how_to_scan_images.jni
 Check @ref tutorial_how_to_scan_images "the corresponding tutorial" for more details
 */
 
@@ -938,10 +938,10 @@ In case of #REDUCE_SUM, #REDUCE_SUM2 and #REDUCE_AVG, the output may have a larg
 And multi-channel arrays are also supported in these two reduction modes.
 
 The following code demonstrates its usage for a single channel matrix.
-@snippet snippets/core_reduce.cpp example
+@snippet snippets/core_reduce.jni example
 
 And the following code demonstrates its usage for a two-channel matrix.
-@snippet snippets/core_reduce.cpp example2
+@snippet snippets/core_reduce.jni example2
 
 @param src input 2D matrix.
 @param dst output vector. Its size and type is defined by dim and dtype parameters.
@@ -964,7 +964,7 @@ The function cv::split does the reverse operation. If you need to shuffle channe
 advanced way, use cv::mixChannels.
 
 The following example shows how to merge 3 single channel matrices into a single 3-channel matrix.
-@snippet snippets/core_merge.cpp example
+@snippet snippets/core_merge.jni example
 
 @param mv input array of matrices to be merged; all the matrices in mv must have the same
 size and the same depth.
@@ -991,7 +991,7 @@ If you need to extract a single channel or do some other sophisticated channel p
 mixChannels.
 
 The following example demonstrates how to split a 3-channel matrix into 3 single channel matrices.
-@snippet snippets/core_split.cpp example
+@snippet snippets/core_split.jni example
 
 @param src input multi-channel array.
 @param mvbegin output array; the number of arrays must match src.channels(); the arrays themselves are
@@ -2246,7 +2246,7 @@ implementation. Though, those two functions actually calculate cross-correlation
 so you need to "flip" the second convolution operand B vertically and horizontally using flip .
 @note
 -   An example using the discrete fourier transform can be found at
-    opencv_source_code/samples/cpp/dft.cpp
+    opencv_source_code/samples/jni/dft.jni
 -   (Python) An example using the dft functionality to perform Wiener deconvolution can be found
     at opencv_source/samples/python/deconvolution.py
 -   (Python) An example rearranging the quadrants of a Fourier image can be found at
@@ -2638,11 +2638,11 @@ public:
     Mat mean; //!< mean value subtracted before the projection and added after the back projection
 };
 
-/** @example samples/cpp/pca.cpp
+/** @example samples/jni/pca.jni
 An example using %PCA for dimensionality reduction while maintaining an amount of variance
 */
 
-/** @example samples/cpp/tutorial_code/ml/introduction_to_pca/introduction_to_pca.cpp
+/** @example samples/jni/tutorial_code/ml/introduction_to_pca/introduction_to_pca.jni
 Check @ref tutorial_introduction_to_pca "the corresponding tutorial" for more details
 */
 
@@ -3075,7 +3075,7 @@ enum KmeansFlags {
     KMEANS_USE_INITIAL_LABELS = 1
 };
 
-/** @example samples/cpp/kmeans.cpp
+/** @example samples/jni/kmeans.jni
 An example on k-means clustering
 */
 
@@ -3189,7 +3189,7 @@ models, codebook-based algorithm etc.), optical flow (block matching, Lucas-Kana
 etc.).
 
 Here is example of SimpleBlobDetector use in your application via Algorithm interface:
-@snippet snippets/core_various.cpp Algorithm
+@snippet snippets/core_various.jni Algorithm
 */
 class CV_EXPORTS_W Algorithm
 {

@@ -1768,7 +1768,7 @@ inline v_reg<_Tp, simd128_width / sizeof(_Tp)> v_load_low(const _Tp* ptr)
 
 @param ptr memory block containing data for first half (0..n/2)
 
-@code{.cpp}
+@code{.jni}
 int lo[4] = { 1, 2, 3, 4 };
 v_int32x8 r = v256_load_low(lo);
 @endcode
@@ -1796,7 +1796,7 @@ inline v_reg<_Tp, simd256_width / sizeof(_Tp)> v256_load_low(const _Tp* ptr)
 
 @param ptr memory block containing data for first half (0..n/2)
 
-@code{.cpp}
+@code{.jni}
 int lo[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 v_int32x16 r = v512_load_low(lo);
 @endcode
@@ -1853,7 +1853,7 @@ inline v_reg<_Tp, simd128_width / sizeof(_Tp)> v_load_halves(const _Tp* loptr, c
 @param loptr memory block containing data for first half (0..n/2)
 @param hiptr memory block containing data for second half (n/2..n)
 
-@code{.cpp}
+@code{.jni}
 int lo[4] = { 1, 2, 3, 4 }, hi[4] = { 5, 6, 7, 8 };
 v_int32x8 r = v256_load_halves(lo, hi);
 @endcode
@@ -1884,7 +1884,7 @@ inline v_reg<_Tp, simd256_width / sizeof(_Tp)> v256_load_halves(const _Tp* loptr
 @param loptr memory block containing data for first half (0..n/2)
 @param hiptr memory block containing data for second half (n/2..n)
 
-@code{.cpp}
+@code{.jni}
 int lo[4] = { 1, 2, 3, 4, 5, 6, 7, 8 }, hi[4] = { 9, 10, 11, 12, 13, 14, 15, 16 };
 v_int32x16 r = v512_load_halves(lo, hi);
 @endcode
@@ -1942,7 +1942,7 @@ v_load_expand(const _Tp* ptr)
 
 Same as cv::v256_load, but result pack type will be 2x wider than memory type.
 
-@code{.cpp}
+@code{.jni}
 short buf[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // type is int16
 v_int32x8 r = v256_load_expand(buf); // r = {1, 2, 3, 4, 5, 6, 7, 8} - type is int32
 @endcode
@@ -1973,7 +1973,7 @@ v256_load_expand(const _Tp* ptr)
 
 Same as cv::v512_load, but result pack type will be 2x wider than memory type.
 
-@code{.cpp}
+@code{.jni}
 short buf[8] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}; // type is int16
 v_int32x16 r = v512_load_expand(buf); // r = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16} - type is int32
 @endcode
@@ -2030,7 +2030,7 @@ v_load_expand_q(const _Tp* ptr)
 /** @brief Load register contents from memory with quad expand
 
 Same as cv::v256_load_expand, but result type is 4 times wider than source.
-@code{.cpp}
+@code{.jni}
 char buf[8] = {1, 2, 3, 4, 5, 6, 7, 8}; // type is int8
 v_int32x8 r = v256_load_expand_q(buf); // r = {1, 2, 3, 4, 5, 6, 7, 8} - type is int32
 @endcode
@@ -2060,7 +2060,7 @@ v256_load_expand_q(const _Tp* ptr)
 /** @brief Load register contents from memory with quad expand
 
 Same as cv::v512_load_expand, but result type is 4 times wider than source.
-@code{.cpp}
+@code{.jni}
 char buf[16] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}; // type is int8
 v_int32x16 r = v512_load_expand_q(buf); // r = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16} - type is int32
 @endcode

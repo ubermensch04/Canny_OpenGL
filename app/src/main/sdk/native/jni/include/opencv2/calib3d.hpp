@@ -389,15 +389,15 @@ R & t \\
         parameter's description, however, will be clear in that a camera intrinsic matrix with the structure
         shown above is required.
     -   A calibration sample for 3 cameras in a horizontal position can be found at
-        opencv_source_code/samples/cpp/3calibration.cpp
+        opencv_source_code/samples/jni/3calibration.jni
     -   A calibration sample based on a sequence of images can be found at
-        opencv_source_code/samples/cpp/calibration.cpp
+        opencv_source_code/samples/jni/calibration.jni
     -   A calibration sample in order to do 3D reconstruction can be found at
-        opencv_source_code/samples/cpp/build3dmodel.cpp
+        opencv_source_code/samples/jni/build3dmodel.jni
     -   A calibration example on stereo calibration can be found at
-        opencv_source_code/samples/cpp/stereo_calib.cpp
+        opencv_source_code/samples/jni/stereo_calib.jni
     -   A calibration example on stereo matching can be found at
-        opencv_source_code/samples/cpp/stereo_match.cpp
+        opencv_source_code/samples/jni/stereo_match.jni
     -   (Python) A camera calibration sample can be found at
         opencv_source_code/samples/python/calibrate.py
 
@@ -669,7 +669,7 @@ public:
 
 
 
-/** @example samples/cpp/tutorial_code/features2D/Homography/pose_from_homography.cpp
+/** @example samples/jni/tutorial_code/features2D/Homography/pose_from_homography.jni
 An example program about pose estimation from coplanar points
 
 Check @ref tutorial_homography "the corresponding tutorial" for more details
@@ -892,7 +892,7 @@ CV_EXPORTS_W void projectPoints( InputArray objectPoints,
                                  OutputArray jacobian = noArray(),
                                  double aspectRatio = 0 );
 
-/** @example samples/cpp/tutorial_code/features2D/Homography/homography_from_camera_displacement.cpp
+/** @example samples/jni/tutorial_code/features2D/Homography/homography_from_camera_displacement.jni
 An example program about homography from the camera displacement
 
 Check @ref tutorial_homography "the corresponding tutorial" for more details
@@ -938,9 +938,9 @@ More information about Perspective-n-Points is described in @ref calib3d_solvePn
    -   If you are using Python:
         - Numpy array slices won't work as input because solvePnP requires contiguous
         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-        modules/calib3d/src/solvepnp.cpp version 2.4.9)
+        modules/calib3d/src/solvepnp.jni version 2.4.9)
         - The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-        to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+        to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
         which requires 2-channel information.
         - Thus, given some data D = np.array(...) where D.shape = (N,M), in order to use a subset of
         it as, e.g., imagePoints, one must effectively copy it into a new array: imagePoints =
@@ -1002,7 +1002,7 @@ makes the function resistant to outliers.
 
 @note
    -   An example of how to use solvePNPRansac for object detection can be found at
-        opencv_source_code/samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/
+        opencv_source_code/samples/jni/tutorial_code/calib3d/real_time_pose_estimation/
    -   The default method used to estimate the camera pose for the Minimal Sample Sets step
        is #SOLVEPNP_EPNP. Exceptions are:
          - if you choose #SOLVEPNP_P3P or #SOLVEPNP_AP3P, these methods will be used.
@@ -1169,9 +1169,9 @@ More information is described in @ref calib3d_solvePnP
    -   If you are using Python:
         - Numpy array slices won't work as input because solvePnP requires contiguous
         arrays (enforced by the assertion using cv::Mat::checkVector() around line 55 of
-        modules/calib3d/src/solvepnp.cpp version 2.4.9)
+        modules/calib3d/src/solvepnp.jni version 2.4.9)
         - The P3P algorithm requires image points to be in an array of shape (N,1,2) due
-        to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.cpp version 2.4.9)
+        to its calling of #undistortPoints (around line 75 of modules/calib3d/src/solvepnp.jni version 2.4.9)
         which requires 2-channel information.
         - Thus, given some data D = np.array(...) where D.shape = (N,M), in order to use a subset of
         it as, e.g., imagePoints, one must effectively copy it into a new array: imagePoints =
@@ -1925,7 +1925,7 @@ pixels from the original images from the cameras are retained in the rectified i
 image pixels are lost). Any intermediate value yields an intermediate result between
 those two extreme cases.
 @param newImageSize New image resolution after rectification. The same size should be passed to
-#initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+#initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
 is passed (default), it is set to the original imageSize . Setting it to a larger value can help you
 preserve details in the original image, especially when there is a big radial distortion.
 @param validPixROI1 Optional output rectangles inside the rectified images where all the pixels
@@ -1998,7 +1998,7 @@ As you can see, the first three columns of P1 and P2 will effectively be the new
 matrices. The matrices, together with R1 and R2 , can then be passed to #initUndistortRectifyMap to
 initialize the rectification map for each camera.
 
-See below the screenshot from the stereo_calib.cpp sample. Some red horizontal lines pass through
+See below the screenshot from the stereo_calib.jni sample. Some red horizontal lines pass through
 the corresponding image regions. This means that the images are well rectified, which is what most
 stereo correspondence algorithms rely on. The green rectangles are roi1 and roi2 . You see that
 their interiors are all valid pixels.
@@ -3247,7 +3247,7 @@ CV_EXPORTS_W cv::Mat estimateAffinePartial2D(InputArray from, InputArray to, Out
                                   size_t maxIters = 2000, double confidence = 0.99,
                                   size_t refineIters = 10);
 
-/** @example samples/cpp/tutorial_code/features2D/Homography/decompose_homography.cpp
+/** @example samples/jni/tutorial_code/features2D/Homography/decompose_homography.jni
 An example program with homography decomposition.
 
 Check @ref tutorial_homography "the corresponding tutorial" for more details.
@@ -3452,7 +3452,7 @@ public:
     @param P2 The second parameter controlling the disparity smoothness. The larger the values are,
     the smoother the disparity is. P1 is the penalty on the disparity change by plus or minus 1
     between neighbor pixels. P2 is the penalty on the disparity change by more than 1 between neighbor
-    pixels. The algorithm requires P2 \> P1 . See stereo_match.cpp sample where some reasonably good
+    pixels. The algorithm requires P2 \> P1 . See stereo_match.jni sample where some reasonably good
     P1 and P2 values are shown (like 8\*number_of_image_channels\*blockSize\*blockSize and
     32\*number_of_image_channels\*blockSize\*blockSize , respectively).
     @param disp12MaxDiff Maximum allowed difference (in integer pixel units) in the left-right
@@ -3996,7 +3996,7 @@ optimization. It is the \f$max(width,height)/\pi\f$ or the provided \f$f_x\f$, \
     horizontal or vertical direction (depending on the orientation of epipolar lines) to maximize the
     useful image area.
     @param newImageSize New image resolution after rectification. The same size should be passed to
-    #initUndistortRectifyMap (see the stereo_calib.cpp sample in OpenCV samples directory). When (0,0)
+    #initUndistortRectifyMap (see the stereo_calib.jni sample in OpenCV samples directory). When (0,0)
     is passed (default), it is set to the original imageSize . Setting it to larger value can help you
     preserve details in the original image, especially when there is a big radial distortion.
     @param balance Sets the new focal length in range between the min focal length and the max focal

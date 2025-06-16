@@ -1106,7 +1106,7 @@ GAPI_EXPORTS_W GMat equalizeHist(const GMat& src);
 
 The function retrieves contours from the binary image using the algorithm @cite Suzuki85 .
 The contours are a useful tool for shape analysis and object detection and recognition.
-See squares.cpp in the OpenCV sample directory.
+See squares.jni in the OpenCV sample directory.
 
 @note Function textual ID is "org.opencv.imgproc.shape.findContours"
 
@@ -1139,7 +1139,7 @@ findContours(const GMat &src, const RetrievalModes mode, const ContourApproximat
 The function retrieves contours from the binary image using the algorithm @cite Suzuki85
 and calculates their hierarchy.
 The contours are a useful tool for shape analysis and object detection and recognition.
-See squares.cpp in the OpenCV sample directory.
+See squares.jni in the OpenCV sample directory.
 
 @note Function textual ID is "org.opencv.imgproc.shape.findContoursH"
 

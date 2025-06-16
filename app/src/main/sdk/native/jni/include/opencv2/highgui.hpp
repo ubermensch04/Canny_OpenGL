@@ -86,7 +86,7 @@ It provides easy interface to:
 
     See below the example used to generate the figure:
 
-    @include highgui_qt.cpp
+    @include highgui_qt.jni
 
     @defgroup highgui_winrt WinRT support
 
@@ -447,7 +447,7 @@ The function getWindowImageRect returns the client screen coordinates, width and
  */
 CV_EXPORTS_W Rect getWindowImageRect(const String& winname);
 
-/** @example samples/cpp/create_mask.cpp
+/** @example samples/jni/create_mask.jni
 This program demonstrates using mouse events and how to make and use a mask image (black and white) .
 */
 /** @brief Sets mouse handler for the specified window

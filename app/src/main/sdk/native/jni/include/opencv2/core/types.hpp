@@ -529,7 +529,7 @@ Each rectangle is specified by the center point (mass center), length of each si
 #Size2f structure) and the rotation angle in degrees.
 
 The sample below demonstrates how to use RotatedRect:
-@snippet snippets/core_various.cpp RotatedRect_demo
+@snippet snippets/core_various.jni RotatedRect_demo
 ![image](pics/rotatedrect.png)
 
 @sa CamShift, fitEllipse, minAreaRect, CvBox2D

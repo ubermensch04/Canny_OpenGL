@@ -18,6 +18,11 @@ android {
 
         multiDexEnabled=true
         multiDexKeepProguard = file("multidex-config.pro")
+
+        ndk {
+            abiFilters.add("armeabi-v7a")
+            abiFilters.add("arm64-v8a")
+        }
     }
 
     buildTypes {
@@ -41,7 +46,7 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
+            path = file("src/main/jni/CMakeLists.txt")
             version = "3.22.1"
         }
     }

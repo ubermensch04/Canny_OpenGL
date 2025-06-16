@@ -248,7 +248,7 @@ public:
     virtual Ptr<MaskGenerator> getMaskGenerator() = 0;
 };
 
-/** @example samples/cpp/facedetect.cpp
+/** @example samples/jni/facedetect.jni
 This program demonstrates usage of the Cascade classifier class
 \image html Cascade_Classifier_Tutorial_Result_Haar.jpg "Sample screenshot" width=321 height=254
 */
@@ -477,7 +477,7 @@ public:
     */
     CV_WRAP double getWinSigma() const;
 
-    /**@example samples/cpp/peopledetect.cpp
+    /**@example samples/jni/peopledetect.jni
     */
     /**@brief Sets coefficients for the linear SVM classifier.
     @param svmdetector coefficients for the linear SVM classifier.
@@ -512,7 +512,7 @@ public:
     */
     virtual void copyTo(HOGDescriptor& c) const;
 
-    /**@example samples/cpp/train_HOG.cpp
+    /**@example samples/jni/train_HOG.jni
     */
     /** @brief Computes HOG descriptors of given image.
     @param img Matrix of the type CV_8U containing an image where HOG features will be calculated.
@@ -611,7 +611,7 @@ public:
     */
     CV_WRAP static std::vector<float> getDefaultPeopleDetector();
 
-    /**@example samples/tapi/hog.cpp
+    /**@example samples/tapi/hog.jni
     */
     /** @brief Returns coefficients of the classifier trained for people detection (for 48x96 windows).
     */

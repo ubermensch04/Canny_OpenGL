@@ -66,7 +66,7 @@ public class Photo {
      * <ul>
      *   <li>
      *       An example using the inpainting technique can be found at
-     *         opencv_source_code/samples/cpp/inpaint.cpp
+     *         opencv_source_code/samples/jni/inpaint.jni
      *   </li>
      *   <li>
      *       (Python) An example using the inpainting technique can be found at

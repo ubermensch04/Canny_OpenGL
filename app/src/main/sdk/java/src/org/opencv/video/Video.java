@@ -397,7 +397,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -466,7 +466,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -534,7 +534,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -601,7 +601,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -667,7 +667,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -732,7 +732,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the Lucas-Kanade optical flow algorithm can be found at
-     *     opencv_source_code/samples/cpp/lkdemo.cpp
+     *     opencv_source_code/samples/jni/lkdemo.jni
      *   </li>
      *   <li>
      *    (Python) An example using the Lucas-Kanade optical flow algorithm can be found at
@@ -800,7 +800,7 @@ public class Video {
      * <ul>
      *   <li>
      *    An example using the optical flow algorithm described by Gunnar Farneback can be found at
-     *     opencv_source_code/samples/cpp/fback.cpp
+     *     opencv_source_code/samples/jni/fback.jni
      *   </li>
      *   <li>
      *    (Python) An example using the optical flow algorithm described by Gunnar Farneback can be
@@ -909,7 +909,7 @@ public class Video {
      * (e.g., a simple euclidean/similarity transform that allows for the images showing the same image
      * content approximately). Use inverse warping in the second image to take an image close to the first
      * one, i.e. use the flag WARP_INVERSE_MAP with warpAffine or warpPerspective. See also the OpenCV
-     * sample image_alignment.cpp that demonstrates the use of the function. Note that the function throws
+     * sample image_alignment.jni that demonstrates the use of the function. Note that the function throws
      * an exception if algorithm does not converges.
      *
      * SEE:

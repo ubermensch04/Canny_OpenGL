@@ -17,14 +17,14 @@ import org.opencv.videoio.IStreamReader;
  * The class provides C++ API for capturing video from cameras or for reading video files and image sequences.
  *
  * Here is how the class can be used:
- * INCLUDE: samples/cpp/videocapture_basic.cpp
+ * INCLUDE: samples/jni/videocapture_basic.jni
  *
  * <b>Note:</b> In REF: videoio_c "C API" the black-box structure {@code CvCapture} is used instead of %VideoCapture.
  * <b>Note:</b>
  * <ul>
  *   <li>
  *    (C++) A basic sample on using the %VideoCapture interface can be found at
- *     {@code OPENCV_SOURCE_CODE/samples/cpp/videocapture_starter.cpp}
+ *     {@code OPENCV_SOURCE_CODE/samples/jni/videocapture_starter.jni}
  *   </li>
  *   <li>
  *    (Python) A basic sample on using the %VideoCapture interface can be found at

@@ -239,12 +239,12 @@ element is a structure of 2 integers, followed by a single-precision floating-po
 equivalent notations of the above specification are `iif`, `2i1f` and so forth. Other examples: `u`
 means that the array consists of bytes, and `2d` means the array consists of pairs of doubles.
 
-@see @ref samples/cpp/tutorial_code/core/file_input_output/file_input_output.cpp
+@see @ref samples/jni/tutorial_code/core/file_input_output/file_input_output.jni
 */
 
 //! @{
 
-/** @example samples/cpp/tutorial_code/core/file_input_output/file_input_output.cpp
+/** @example samples/jni/tutorial_code/core/file_input_output/file_input_output.jni
 A complete example using the FileStorage interface
 Check @ref tutorial_file_input_output_with_xml_yml "the corresponding tutorial" for more details
 */

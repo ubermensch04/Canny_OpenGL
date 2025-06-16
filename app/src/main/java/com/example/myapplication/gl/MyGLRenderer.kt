@@ -1,4 +1,4 @@
-package gl
+package com.example.myapplication.gl
 
 import android.graphics.Bitmap
 import android.opengl.GLES20

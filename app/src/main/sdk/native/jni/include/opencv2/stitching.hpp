@@ -109,7 +109,7 @@ namespace cv {
 //! @addtogroup stitching
 //! @{
 
-/** @example samples/cpp/stitching.cpp
+/** @example samples/jni/stitching.jni
 A basic example on image stitching
 */
 
@@ -117,7 +117,7 @@ A basic example on image stitching
 A basic example on image stitching in Python.
 */
 
-/** @example samples/cpp/stitching_detailed.cpp
+/** @example samples/jni/stitching_detailed.jni
 A detailed example on image stitching
 */
 
@@ -129,11 +129,11 @@ familiar with the theory is recommended.
 
 @note
 -   A basic example on image stitching can be found at
-    opencv_source_code/samples/cpp/stitching.cpp
+    opencv_source_code/samples/jni/stitching.jni
 -   A basic example on image stitching in Python can be found at
     opencv_source_code/samples/python/stitching.py
 -   A detailed example on image stitching can be found at
-    opencv_source_code/samples/cpp/stitching_detailed.cpp
+    opencv_source_code/samples/jni/stitching_detailed.jni
  */
 class CV_EXPORTS_W Stitcher
 {
@@ -146,7 +146,7 @@ public:
     static constexpr double ORIG_RESOL = -1.0;
 #else
     // support MSVS 2013
-    static const double ORIG_RESOL; // Initialized in stitcher.cpp
+    static const double ORIG_RESOL; // Initialized in stitcher.jni
 #endif
 
     enum Status

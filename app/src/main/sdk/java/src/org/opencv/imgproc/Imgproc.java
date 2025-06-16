@@ -3381,7 +3381,7 @@ public class Imgproc {
      * in CITE: Matas00
      *
      * See the line detection example below:
-     * INCLUDE: snippets/imgproc_HoughLinesP.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesP.jni
      * This is a sample picture the function parameters have been tuned for:
      *
      * ![image](pics/building.jpg)
@@ -3414,7 +3414,7 @@ public class Imgproc {
      * in CITE: Matas00
      *
      * See the line detection example below:
-     * INCLUDE: snippets/imgproc_HoughLinesP.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesP.jni
      * This is a sample picture the function parameters have been tuned for:
      *
      * ![image](pics/building.jpg)
@@ -3446,7 +3446,7 @@ public class Imgproc {
      * in CITE: Matas00
      *
      * See the line detection example below:
-     * INCLUDE: snippets/imgproc_HoughLinesP.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesP.jni
      * This is a sample picture the function parameters have been tuned for:
      *
      * ![image](pics/building.jpg)
@@ -3479,7 +3479,7 @@ public class Imgproc {
      * Finds lines in a set of points using the standard Hough transform.
      *
      * The function finds lines in a set of points using a modification of the Hough transform.
-     * INCLUDE: snippets/imgproc_HoughLinesPointSet.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesPointSet.jni
      * @param point Input vector of points. Each vector must be encoded as a Point vector \((x,y)\). Type must be CV_32FC2 or CV_32SC2.
      * @param lines Output vector of found lines. Each vector is encoded as a vector&lt;Vec3d&gt; \((votes, rho, theta)\).
      * The larger the value of 'votes', the higher the reliability of the Hough line.
@@ -3509,7 +3509,7 @@ public class Imgproc {
      * The function finds circles in a grayscale image using a modification of the Hough transform.
      *
      * Example: :
-     * INCLUDE: snippets/imgproc_HoughLinesCircles.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesCircles.jni
      *
      * <b>Note:</b> Usually the function detects the centers of circles well. However, it may fail to find correct
      * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
@@ -3557,7 +3557,7 @@ public class Imgproc {
      * The function finds circles in a grayscale image using a modification of the Hough transform.
      *
      * Example: :
-     * INCLUDE: snippets/imgproc_HoughLinesCircles.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesCircles.jni
      *
      * <b>Note:</b> Usually the function detects the centers of circles well. However, it may fail to find correct
      * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
@@ -3604,7 +3604,7 @@ public class Imgproc {
      * The function finds circles in a grayscale image using a modification of the Hough transform.
      *
      * Example: :
-     * INCLUDE: snippets/imgproc_HoughLinesCircles.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesCircles.jni
      *
      * <b>Note:</b> Usually the function detects the centers of circles well. However, it may fail to find correct
      * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
@@ -3650,7 +3650,7 @@ public class Imgproc {
      * The function finds circles in a grayscale image using a modification of the Hough transform.
      *
      * Example: :
-     * INCLUDE: snippets/imgproc_HoughLinesCircles.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesCircles.jni
      *
      * <b>Note:</b> Usually the function detects the centers of circles well. However, it may fail to find correct
      * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
@@ -3695,7 +3695,7 @@ public class Imgproc {
      * The function finds circles in a grayscale image using a modification of the Hough transform.
      *
      * Example: :
-     * INCLUDE: snippets/imgproc_HoughLinesCircles.cpp
+     * INCLUDE: snippets/imgproc_HoughLinesCircles.jni
      *
      * <b>Note:</b> Usually the function detects the centers of circles well. However, it may fail to find correct
      * radii. You can assist to the function by specifying the radius range ( minRadius and maxRadius ) if
@@ -5091,10 +5091,10 @@ public class Imgproc {
      * \par Reverse mapping
      *
      * You can get reverse mapping adding #WARP_INVERSE_MAP to {@code flags}
-     * \snippet polar_transforms.cpp InverseMap
+     * \snippet polar_transforms.jni InverseMap
      *
      * In addiction, to calculate the original coordinate from a polar mapped coordinate \((rho, phi)-&gt;(x, y)\):
-     * \snippet polar_transforms.cpp InverseCoordinate
+     * \snippet polar_transforms.jni InverseCoordinate
      *
      * @param src Source image.
      * @param dst Destination image. It will have same type as src.
@@ -6216,7 +6216,7 @@ public class Imgproc {
      * Before passing the image to the function, you have to roughly outline the desired regions in the
      * image markers with positive (&gt;0) indices. So, every region is represented as one or more connected
      * components with the pixel values 1, 2, 3, and so on. Such markers can be retrieved from a binary
-     * mask using #findContours and #drawContours (see the watershed.cpp demo). The markers are "seeds" of
+     * mask using #findContours and #drawContours (see the watershed.jni demo). The markers are "seeds" of
      * the future image regions. All the other pixels in markers , whose relation to the outlined regions
      * is not known and should be defined by the algorithm, should be set to 0's. In the function output,
      * each pixel in markers is set to a value of the "seed" components or to -1 at boundaries between the
@@ -7771,7 +7771,7 @@ public class Imgproc {
      * Finds contours in a binary image.
      *
      * The function retrieves contours from the binary image using the algorithm CITE: Suzuki85 . The contours
-     * are a useful tool for shape analysis and object detection and recognition. See squares.cpp in the
+     * are a useful tool for shape analysis and object detection and recognition. See squares.jni in the
      * OpenCV sample directory.
      * <b>Note:</b> Since opencv 3.2 source image is not modified by this function.
      *
@@ -7805,7 +7805,7 @@ public class Imgproc {
      * Finds contours in a binary image.
      *
      * The function retrieves contours from the binary image using the algorithm CITE: Suzuki85 . The contours
-     * are a useful tool for shape analysis and object detection and recognition. See squares.cpp in the
+     * are a useful tool for shape analysis and object detection and recognition. See squares.jni in the
      * OpenCV sample directory.
      * <b>Note:</b> Since opencv 3.2 source image is not modified by this function.
      *
@@ -9473,7 +9473,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.
@@ -9508,7 +9508,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.
@@ -9542,7 +9542,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.
@@ -9575,7 +9575,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.
@@ -9607,7 +9607,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.
@@ -9638,7 +9638,7 @@ public class Imgproc {
      * The function draws contour outlines in the image if \(\texttt{thickness} \ge 0\) or fills the area
      * bounded by the contours if \(\texttt{thickness}&lt;0\) . The example below shows how to retrieve
      * connected components from the binary image and label them: :
-     * INCLUDE: snippets/imgproc_drawContours.cpp
+     * INCLUDE: snippets/imgproc_drawContours.jni
      *
      * @param image Destination image.
      * @param contours All the input contours. Each contour is stored as a point vector.

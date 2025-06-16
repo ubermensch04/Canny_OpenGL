@@ -630,7 +630,7 @@ protected:
     MatStep& operator = (const MatStep&);
 };
 
-/** @example samples/cpp/cout_mat.cpp
+/** @example samples/jni/cout_mat.jni
 An example demonstrating the serial out capabilities of cv::Mat
 */
 
@@ -1867,10 +1867,10 @@ public:
      *         that an element may have multiple channels.
      *
      * The following code demonstrates its usage for a 2-d matrix:
-     * @snippet snippets/core_mat_checkVector.cpp example-2d
+     * @snippet snippets/core_mat_checkVector.jni example-2d
      *
      * The following code demonstrates its usage for a 3-d matrix:
-     * @snippet snippets/core_mat_checkVector.cpp example-3d
+     * @snippet snippets/core_mat_checkVector.jni example-3d
      */
     int checkVector(int elemChannels, int depth=-1, bool requireContinuous=true) const;
 

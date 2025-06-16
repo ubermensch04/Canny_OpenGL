@@ -21,7 +21,7 @@ namespace segmentation {
  * which can be used for image segmentation.
  *
  * Usage example:
- * @snippet snippets/imgproc_segmentation.cpp usage_example_intelligent_scissors
+ * @snippet snippets/imgproc_segmentation.jni usage_example_intelligent_scissors
  *
  * Reference: <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.138.3811&rep=rep1&type=pdf">"Intelligent Scissors for Image Composition"</a>
  * algorithm designed by Eric N. Mortensen and William A. Barrett, Brigham Young University

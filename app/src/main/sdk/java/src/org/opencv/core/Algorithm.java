@@ -16,7 +16,7 @@ package org.opencv.core;
  * etc.).
  *
  * Here is example of SimpleBlobDetector use in your application via Algorithm interface:
- * SNIPPET: snippets/core_various.cpp Algorithm
+ * SNIPPET: snippets/core_various.jni Algorithm
  */
 public class Algorithm {
 

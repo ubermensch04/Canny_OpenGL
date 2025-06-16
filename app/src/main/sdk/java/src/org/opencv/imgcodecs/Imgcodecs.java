@@ -722,7 +722,7 @@ public class Imgcodecs {
      *
      * The sample below shows how to create a BGRA image, how to set custom compression parameters and save it to a PNG file.
      * It also demonstrates how to save multiple images in a TIFF file:
-     * INCLUDE: snippets/imgcodecs_imwrite.cpp
+     * INCLUDE: snippets/imgcodecs_imwrite.jni
      * @param filename Name of the file.
      * @param img (Mat or vector of Mat) Image or Images to be saved.
      * @param params Format-specific parameters encoded as pairs (paramId_1, paramValue_1, paramId_2, paramValue_2, ... .) see cv::ImwriteFlags
@@ -808,7 +808,7 @@ public class Imgcodecs {
      *
      * The sample below shows how to create a BGRA image, how to set custom compression parameters and save it to a PNG file.
      * It also demonstrates how to save multiple images in a TIFF file:
-     * INCLUDE: snippets/imgcodecs_imwrite.cpp
+     * INCLUDE: snippets/imgcodecs_imwrite.jni
      * @param filename Name of the file.
      * @param img (Mat or vector of Mat) Image or Images to be saved.
      * @return automatically generated

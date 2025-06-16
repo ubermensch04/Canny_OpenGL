@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.opengl.GLSurfaceView
 import android.view.View
-import gl.MyGLRenderer
+import com.example.myapplication.gl.MyGLRenderer
 
 class MainActivity : ComponentActivity() {
 

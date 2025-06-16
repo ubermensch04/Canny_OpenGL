@@ -11,10 +11,10 @@ package org.opencv.core;
  *
  * The class computes passing time by counting the number of ticks per second. That is, the following code computes the
  * execution time in seconds:
- * SNIPPET: snippets/core_various.cpp TickMeter_total
+ * SNIPPET: snippets/core_various.jni TickMeter_total
  *
  * It is also possible to compute the average time over multiple runs:
- * SNIPPET: snippets/core_various.cpp TickMeter_average
+ * SNIPPET: snippets/core_various.jni TickMeter_average
  *
  * SEE: getTickCount, getTickFrequency
  */
